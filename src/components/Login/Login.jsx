@@ -1,16 +1,15 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
+import {required} from '../../utils/validators/validators';
+import {Input} from '../common/FormsControl';
 
-const LoginForm = ({handleSubmit}) => {
+const LoginForm = ({handleSubmit, error}) => {
 	return (
 		<form onSubmit={handleSubmit} className="">
 			<h1>API-консолька</h1>
-			<div className="">Логин</div>
-			<Field component={"input"} name={"login"} />
-			<div className="">Сублогин</div>
-			<Field component={"input"} name={"sublogin"} />
-			<div className="">Пароль</div>
-			<Field component={"input"} name={"password"} type={"password"} />
+			<Field component={Input} name={"login"} validate={[required]} title="Логин" />
+			<Field component={Input} name={"sublogin"} title="Сублогин"/>
+			<Field component={Input} name={"password"} type={"password"} title="Пароль" />
 			<div className="">
 				<button type={"submit"}>Войти</button>
 			</div>

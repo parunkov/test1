@@ -1,0 +1,31 @@
+.formControl {
+  display: inline-block;
+  width: 100%;
+}
+
+.formControl input,
+.formControl textarea {
+  border: 1px solid #1467C1;
+  border-radius: 5px;
+}
+
+.formControl.error input,
+.formControl.error textarea {
+  border: 2px solid red;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.formControl.error span {
+  vertical-align: top;
+  display: inline-block;
+
+  /*margin-top: 10px;
+	margin-left: 10px;*/
+  color: white;
+  background: red;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  line-height: .7em;
+}
