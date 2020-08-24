@@ -4,7 +4,6 @@ import {required, emailOrString, stringWithSpace} from '../../utils/validators/v
 import {Input} from '../common/FormsControl';
 
 const LoginForm = ({handleSubmit, error, loginError}) => {
-	console.log(loginError);
 	return (
 		<form onSubmit={handleSubmit} className="">
 		<h1>API-консолька</h1>
