@@ -3,7 +3,7 @@ import './App.css';
 import {HashRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import Console from './components/Console/Console';
-import Login from './components/Login/Login';
+import LoginContainer from './components/Login/LoginContainer';
 import store from './redux/store';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 	      <div className="App">
 	        <Route exact path="/" render={() => <Console />} />
 	        <Route path="/console" render={() => <Console />} />
-	        <Route path="/login" render={() => <Login />} />
+	        <Route path="/login" render={() => <LoginContainer />} />
 	      </div>
 	     </Provider>
     </HashRouter>

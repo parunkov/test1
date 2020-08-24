@@ -2,8 +2,6 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, emailOrString, stringWithSpace} from '../../utils/validators/validators';
 import {Input} from '../common/FormsControl';
-import 'isomorphic-fetch';
-import Sendsay from 'sendsay-api';
 
 const LoginForm = ({handleSubmit, error}) => {
 	return (
@@ -23,19 +21,9 @@ const LoginReduxForm = reduxForm ({
 	form: 'login'
 })(LoginForm);
 
-const Login = () => {
+const Login = ({checkLogin}) => {
 	const onSubmit = (formData) => {
-		console.log(formData);
-		var sendsay = new Sendsay({
-			auth: {
-				login: 'parunkov@gmail.com', 
-				password: 'cha3Najiy',     
-			}
-		});
-
-		sendsay.request({ action: 'sys.settings.get', list: ['about.id']}).then(function(res) {
-			console.log(res);
-		})
+		checkLogin(formData.login, formData.sublogin, formData.password);
 	}
 	return (
 		<LoginReduxForm onSubmit={onSubmit} />
