@@ -23,7 +23,7 @@ const LoginReduxForm = reduxForm ({
 })(LoginForm);
 
 const Login = ({checkLogin, error}) => {
-	console.log(error);
+	// console.log(error);
 	const onSubmit = (formData) => {
 		checkLogin(formData.login, formData.sublogin, formData.password);
 	}

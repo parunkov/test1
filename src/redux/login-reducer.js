@@ -26,7 +26,7 @@ const loginReducer = (state = initialState, action) => {
 	}
 }
 
-const setLogin = (login, sublogin, password) => ({
+export const setLogin = (login, sublogin, password) => ({
 	type: LOGINED,
 	payload: {isLogined: true, login, sublogin, password, error: null}
 });
@@ -42,6 +42,7 @@ export const checkLogin = (login, sublogin, password) => (dispatch) => {
 
 	sendsay.request({ action: 'sys.settings.get', list: ['about.id']}).then(function(res) {
 		// console.log(res);
+		localStorage.setItem('loginData', JSON.stringify({isLogined: true, login, sublogin, password}))
 		dispatch(setLogin(login, sublogin, password));
 	}).catch(err => {
 		// console.log(err.explain);
