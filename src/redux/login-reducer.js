@@ -2,6 +2,7 @@ import 'isomorphic-fetch';
 import Sendsay from 'sendsay-api';
 
 const LOGINED = 'login/LOGINED';
+const LOGOUT = 'login/LOGOUT';
 const ERROR = 'login/ERROR';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOGINED:
-		case ERROR: {
+		case ERROR:
+		case LOGOUT: {
 			return {
 				...state,
 				...action.payload
@@ -29,6 +31,10 @@ const loginReducer = (state = initialState, action) => {
 export const setLogin = (login, sublogin, password) => ({
 	type: LOGINED,
 	payload: {isLogined: true, login, sublogin, password, error: null}
+});
+export const logout = () =>({
+	type: LOGOUT,
+	payload: {isLogined: false, login: null, sublogin: null, password: null, error: null}
 });
 const setError = (error) => ({
 	type: ERROR,

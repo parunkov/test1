@@ -1,8 +1,11 @@
 import React from 'react';
+import HeaderContainer from '../Header/HeaderContainer';
 
 const Console = () => {
 	return (
-		<div className="">Console</div>
+		<div className="">
+			<HeaderContainer />
+		</div>
 	)
 }
 
