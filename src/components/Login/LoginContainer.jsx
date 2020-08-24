@@ -4,7 +4,8 @@ import {checkLogin} from '../../redux/login-reducer';
 
 const mapStateToProps = (state) => {
 	return {
-		isLogined: state.login.isLogined
+		isLogined: state.login.isLogined,
+		error: state.login.error
 	}
 }
 

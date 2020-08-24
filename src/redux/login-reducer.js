@@ -28,7 +28,7 @@ const loginReducer = (state = initialState, action) => {
 
 const setLogin = (login, sublogin, password) => ({
 	type: LOGINED,
-	payload: {isLogined: true, login, sublogin, password}
+	payload: {isLogined: true, login, sublogin, password, error: null}
 });
 const setError = (error) => ({
 	type: ERROR,
