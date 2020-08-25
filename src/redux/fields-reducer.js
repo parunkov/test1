@@ -3,17 +3,21 @@ import Sendsay from 'sendsay-api';
 
 const RESPONSE = 'fields/RESPONSE';
 const ERROR = 'fields/ERROR';
+const SET_VALUES = 'fields/SET_VALUES';
 
 const initialState = {
 	request: null,
 	response: null,
-	error: false
+	error: false,
+	fieldFormattedValue: '',
+	fieldValue: ''
 }
 
 const fieldsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case RESPONSE:
-		case ERROR: {
+		case ERROR:
+		case SET_VALUES: {
 			return {
 				...state,
 				...action.payload
@@ -31,6 +35,10 @@ const setResponse = (response) => ({
 const setError = () => ({
 	type: ERROR,
 	payload: {error: true}
+});
+export const setValues = (fieldFormattedValue, fieldValue) => ({
+	type: SET_VALUES,
+	payload: {fieldFormattedValue, fieldValue}
 });
 
 export const sendRequest = (login, sublogin, password, request) => (dispatch) => {

@@ -1,6 +1,6 @@
 import Fields from './Fields';
 import {connect} from 'react-redux';
-import {sendRequest} from '../../redux/fields-reducer';
+import {sendRequest, setValues} from '../../redux/fields-reducer';
 
 const mapStateToProps = (state) => {
 	return {
@@ -8,8 +8,10 @@ const mapStateToProps = (state) => {
 		sublogin: state.login.sublogin,
 		password: state.login.password,
 		request: state.fields.request,
-		response: state.fields.response
+		response: state.fields.response,
+		fieldFormattedValue: state.fields.fieldFormattedValue,
+		fieldValue: state.fields.fieldValue
 	}
 }
 
-export default connect(mapStateToProps, {sendRequest})(Fields);
+export default connect(mapStateToProps, {sendRequest, setValues})(Fields);
