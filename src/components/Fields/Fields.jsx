@@ -7,20 +7,22 @@ import JSONPretty from 'react-json-pretty';
 import './Fields.scss';
 import ContentEditable from 'react-contenteditable'
 
-const FieldsForm = ({handleSubmit, error, response, fieldFormattedValue, fieldValue, setValues}) => {
+const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, fieldValue, setValues}) => {
 	const onFieldChange = (evt) => {
 		const fieldFormattedValue = evt.target.value;
-		console.log(typeof fieldFormattedValue);
+		// console.log(typeof fieldFormattedValue);
 		const fieldValue = fieldFormattedValue.replace(/<\/?[a-zA-Z]+>/gi,'').replace(/&nbsp;/gi, '');
 		setValues(fieldFormattedValue, fieldValue);
+		change('request', fieldValue);
 	}
 	const onFormat = () => {
-		console.log(fieldValue);
+		// console.log(fieldValue);
 		const formattedValueElement = <JSONPretty id="json-pretty" data={fieldValue}></JSONPretty>
 		const formattedValue = ReactDOMServer.renderToString(formattedValueElement);
-		console.log(formattedValue);
+		// console.log(formattedValue);
 		// console.log(typeof ReactDOMServer.renderToString(formattedValue));
 		setValues(formattedValue, fieldValue);
+		change('request', fieldValue);
 	}
 	return (
 		<form onSubmit={handleSubmit} className="Fields__textareaWrapper">
