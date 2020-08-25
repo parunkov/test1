@@ -14,3 +14,12 @@ export const stringWithSpace = value => {
 	console.log('String');
 	return 'String';
 }
+export const isJson = value => {
+	try {
+		const request = JSON.parse(value);
+		return undefined;
+	} catch (err) {
+		console.log(err);
+		return err;			
+	}
+}
