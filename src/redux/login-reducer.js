@@ -48,7 +48,7 @@ export const checkLogin = (login, sublogin, password) => (dispatch) => {
 
 	sendsay.request({ action: 'sys.settings.get', list: ['about.id']}).then(function(res) {
 		// console.log(res);
-		localStorage.setItem('loginData', JSON.stringify({isLogined: true, login, sublogin, password}))
+		localStorage.setItem('loginData', JSON.stringify({isLogined: true, login, sublogin, password}));
 		dispatch(setLogin(login, sublogin, password));
 	}).catch(err => {
 		// console.log(err.explain);

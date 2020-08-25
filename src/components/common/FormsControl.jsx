@@ -20,3 +20,13 @@ export const Input = (props) => {
 		</FormsControl>
 	)
 }
+export const Textarea = (props) => {
+	const {input, meta, ...restProps} = props;
+	// debugger;
+	return (
+		<FormsControl {...props}>
+			<div className="">{props.title}</div>
+			<textarea {...input} {...restProps} />
+		</FormsControl>
+	)
+}
