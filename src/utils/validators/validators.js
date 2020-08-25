@@ -16,6 +16,7 @@ export const stringWithSpace = value => {
 }
 export const isJson = value => {
 	try {
+		// eslint-disable-next-line
 		const request = JSON.parse(value);
 		return undefined;
 	} catch (err) {
