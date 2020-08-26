@@ -7,9 +7,11 @@ const initialState = {
 const historyReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_ITEM: {
+			const newHistory = [...state.history].filter(item => item.title !== action.title).slice(-14);
+			// console.log(newHistory);
 			return {
 				...state,
-				history: [ ...state.history,
+				history: [ ...newHistory,
 				{
 					title: action.title,
 					value: action.value,
