@@ -42,21 +42,18 @@ export const setValues = (fieldFormattedValue, fieldValue) => ({
 	payload: {fieldFormattedValue, fieldValue}
 });
 
-export const sendRequest = (login, sublogin, password, request) => (dispatch) => {
+export const sendRequest = (login, sublogin, password, request, fieldValue) => (dispatch) => {
 	const sendsay = new Sendsay({
 		auth: {login, sublogin, password}
 	});
 
 	sendsay.request(request).then(function(res) {
 		dispatch(setResponse(res));
-		// console.log(request.action);
-		dispatch(addHistoryItem(request.action));
+		dispatch(addHistoryItem(request.action, fieldValue, false));
 	}).catch(err => {
 		dispatch(setResponse(err));
 		dispatch(setError());
-		// console.log('Error!!!');
-		// console.log(err);
-		dispatch(addHistoryItem(request.action));
+		dispatch(addHistoryItem(request.action, fieldValue, true));
 	});
 }
 

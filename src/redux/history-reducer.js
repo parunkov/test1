@@ -11,24 +11,22 @@ const historyReducer = (state = initialState, action) => {
 				...state,
 				history: [ ...state.history,
 				{
-					title: action.title
+					title: action.title,
+					value: action.value,
+					isError: action.isError
 				}]
 			}
 		}
-		// case SET_VALUES: {
-		// 	return {
-		// 		...state,
-		// 		...action.payload
-		// 	}
-		// }
 		default:
 		return state;
 	}
 }
 
-export const addHistoryItem = (title) => ({
+export const addHistoryItem = (title, value, isError) => ({
 	type: ADD_ITEM,	
-	title
+	title,
+	value,
+	isError
 });
 
 export default historyReducer;

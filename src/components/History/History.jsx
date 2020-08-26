@@ -4,7 +4,7 @@ const History = ({history}) => {
 	console.log(history);
 	return(
 		<div className="">
-			{history.map((item, i) => <div key={i} className="">{item.title}</div>)}
+			{history.reverse().map((item, i) => <div key={i} className="">{item.title}</div>)}
 		</div>
 	)
 }

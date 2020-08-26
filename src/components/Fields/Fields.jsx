@@ -51,7 +51,7 @@ const FieldsReduxForm = reduxForm ({
 
 const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, fieldValue, setValues}) => {
 	const onSubmit = (formData) => {
-		sendRequest(login, sublogin, password, JSON.parse(formData.request));
+		sendRequest(login, sublogin, password, JSON.parse(formData.request), fieldValue);
 	}
 
 	return(
