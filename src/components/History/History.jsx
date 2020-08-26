@@ -7,7 +7,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	const [copied, setCopied] = useState(false);
 
 	return(
-		<span className="History__item" onClick={() => {
+		<span className="History__item" onMouseDown={() => {
 			change('request', 'request', item.value);
 		}}>
 			<span className={item.isError ? "History__error History__error_enabled" : "History__error"}></span>
