@@ -1,7 +1,9 @@
 .Fields {
-	&__field {
-		text-align: left;
-	}
+	// &__field {
+	// 	text-align: left;
+	// 	height: 200px;
+	// 	border: 1px solid black;
+	// }
 	&__textareaWrapper {
 		textarea {
 			height: 200px;
@@ -10,5 +12,7 @@
 	}
 	&__response {
 		text-align: left;
+		border: 1px solid black;
+		height: 200px;
 	}
 }
