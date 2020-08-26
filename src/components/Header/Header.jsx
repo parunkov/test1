@@ -1,4 +1,6 @@
 import React from 'react';
+import {handle} from '../Console/Console';
+// import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Header = ({login, sublogin, logout}) => {
 	const onBtnClick = () => {

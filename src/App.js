@@ -32,7 +32,7 @@ function App() {
 	return (
 		<Provider store={store}>
 			<div className="App">
-				<ConsoleWrapperContainer />
+					<ConsoleWrapperContainer />
 			</div>
 		 </Provider>
 	);
