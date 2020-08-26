@@ -1,5 +1,6 @@
 import History from './History';
 import {connect} from 'react-redux';
+import {deleleHistoryItem} from '../../redux/history-reducer';
 
 const mapStateToProps = (state) => {
 	return {
@@ -7,4 +8,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, {})(History);
+export default connect(mapStateToProps, {deleleHistoryItem})(History);

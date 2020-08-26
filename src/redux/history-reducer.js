@@ -1,4 +1,5 @@
 const ADD_ITEM = 'history/ADD_ITEM';
+const DELETE_ITEM = 'history/DELETE_ITEM';
 
 const initialState = {
 	history: []
@@ -6,9 +7,14 @@ const initialState = {
 
 const historyReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case DELETE_ITEM: {
+			return {
+				...state,
+				history: state.history.filter(item => item.title !== action.title)
+			}
+		}
 		case ADD_ITEM: {
 			const newHistory = [...state.history].filter(item => item.title !== action.title).slice(-14);
-			// console.log(newHistory);
 			return {
 				...state,
 				history: [ ...newHistory,
@@ -29,6 +35,10 @@ export const addHistoryItem = (title, value, isError) => ({
 	title,
 	value,
 	isError
+});
+export const deleleHistoryItem = (title) => ({
+	type: DELETE_ITEM,
+	title
 });
 
 export default historyReducer;
