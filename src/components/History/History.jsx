@@ -7,13 +7,14 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	const [copied, setCopied] = useState(false);
 
 	return(
-		<span className="History__item">
+		<span className="History__item" onClick={() => {
+			change('request', 'request', item.value);
+		}}>
 			<span className={item.isError ? "History__error History__error_enabled" : "History__error"}></span>
 			<span className="History__title">{copied ? "Скопировано" : item.title}</span>
 			<button className="History__button" onClick={() => setPopup(!popup)}>...</button>
 			{popup && <div>
 				<div className="" onClick={() => {
-					change('request', 'request', item.value);
 					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
 					setPopup(false);
 				}}>Выполнить</div>
