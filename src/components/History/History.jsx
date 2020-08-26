@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import './History.scss';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password}) => {
 	const [popup, setPopup] = useState(false);
+	const [copied, setCopied] = useState(false);
 
 	return(
 		<span className="History__item">
 			<span className={item.isError ? "History__error History__error_enabled" : "History__error"}></span>
-			<span className="History__title">{item.title}</span>
+			<span className="History__title">{copied ? "Скопировано" : item.title}</span>
 			<button className="History__button" onClick={() => setPopup(!popup)}>...</button>
 			{popup && <div>
 				<div className="" onClick={() => {
@@ -15,7 +17,13 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
 					setPopup(false);
 				}}>Выполнить</div>
-				<div className="" onClick={() => console.log(item.value)}>Скопировать</div>
+				<CopyToClipboard text={item.value} onCopy={() => {
+					setCopied(true);
+					setPopup(false);
+					setTimeout(setCopied, 2000, false);
+				}}>
+					<div className="">Скопировать</div>
+				</CopyToClipboard>				
 				<div className="" onClick={() => {
 					deleleHistoryItem(item.title);
 					setPopup(false);
