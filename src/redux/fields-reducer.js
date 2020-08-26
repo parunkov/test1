@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
 import Sendsay from 'sendsay-api';
+import {addHistoryItem} from './history-reducer';
 
 const RESPONSE = 'fields/RESPONSE';
 const ERROR = 'fields/ERROR';
@@ -42,15 +43,20 @@ export const setValues = (fieldFormattedValue, fieldValue) => ({
 });
 
 export const sendRequest = (login, sublogin, password, request) => (dispatch) => {
-	var sendsay = new Sendsay({
+	const sendsay = new Sendsay({
 		auth: {login, sublogin, password}
 	});
 
 	sendsay.request(request).then(function(res) {
 		dispatch(setResponse(res));
+		// console.log(request.action);
+		dispatch(addHistoryItem(request.action));
 	}).catch(err => {
 		dispatch(setResponse(err));
 		dispatch(setError());
+		// console.log('Error!!!');
+		// console.log(err);
+		dispatch(addHistoryItem(request.action));
 	});
 }
 
