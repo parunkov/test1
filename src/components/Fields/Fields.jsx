@@ -11,7 +11,9 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 	const setField = (fieldFormattedValue) => {
 		const fieldValue = fieldFormattedValue.replace(/<[^<>]+>/gi,'').replace(/&nbsp;/gi, '');
 		setValues(fieldFormattedValue, fieldValue);
-		change('request', fieldValue);
+		if (!isJson(fieldValue)) {
+			change('request', fieldValue);
+		}
 	}
 	const onFieldChange = (evt) => {
 		const fieldFormattedValue = evt.target.value;
