@@ -9,10 +9,13 @@ const Console = () => {
 	const handle = useFullScreenHandle();
 	return (
 		<div className="">
-			<button onClick={handle.enter}>
+			{!handle.active && <button onClick={handle.enter}>
 				Enter fullscreen
-			</button>
+			</button>}
 			<FullScreen handle={handle}>
+				{handle.active && <button onClick={handle.exit}>
+					Exit fullscreen
+				</button>}
 				<HeaderContainer />
 				<HistoryContainer />
 				<FieldsContainer />
