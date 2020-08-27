@@ -35,23 +35,28 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	)
 }
 
-const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password}) => {
+const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password, setSavedHistory}) => {
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
 	});
 
 	return(
 		<div className="">
-			{[...history].reverse().map((item, i) => <HistoryItem 
-				key={i} 
-				className="" 
-				item={item} 
-				deleleHistoryItem={deleleHistoryItem}
-				change={change}
-				sendRequest={sendRequest}
-				login={login}
-				sublogin={sublogin}
-				password={password} />)}
+			<div className="">
+				<span>
+					{[...history].reverse().map((item, i) => <HistoryItem 
+						key={i} 
+						className="" 
+						item={item} 
+						deleleHistoryItem={deleleHistoryItem}
+						change={change}
+						sendRequest={sendRequest}
+						login={login}
+						sublogin={sublogin}
+						password={password} />)}
+				</span>
+				<button onClick={() => setSavedHistory([])}>Clear history</button>
+			</div>
 		</div>
 	)
 }

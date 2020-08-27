@@ -8,7 +8,7 @@ import './Console.scss';
 const Console = () => {
 	const handle = useFullScreenHandle();
 	return (
-		<div className="">
+		<div className="Console">
 			{!handle.active && <button onClick={handle.enter}>
 				Enter fullscreen
 			</button>}
@@ -16,9 +16,15 @@ const Console = () => {
 				{handle.active && <button onClick={handle.exit}>
 					Exit fullscreen
 				</button>}
-				<HeaderContainer />
-				<HistoryContainer />
-				<FieldsContainer />
+				<div className="Console__header">
+					<HeaderContainer />
+				</div>
+				<div className="Console__history">
+					<HistoryContainer />
+				</div>
+				<div className="Console__fields">
+					<FieldsContainer />
+				</div>
 			</FullScreen>
 		</div>
 	)
