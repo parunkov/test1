@@ -38,7 +38,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password, setSavedHistory}) => {
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
-	});
+	}, [history]);
 
 	return(
 		<div className="">

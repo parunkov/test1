@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.css';
+import './App.scss';
 import {Provider} from 'react-redux';
 import Console from './components/Console/Console';
 import LoginContainer from './components/Login/LoginContainer';
@@ -15,7 +15,7 @@ const ConsoleWrapper = ({isLogined, setLogin, setSavedHistory}) => {
 			setLogin(savedLoginData.login, savedLoginData.sublogin, savedLoginData.password);
 		}
 		setSavedHistory(JSON.parse(localStorage.getItem('history')));
-	});
+	}, []);
 
 	return(
 		<div>

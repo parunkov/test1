@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, isJson} from '../../utils/validators/validators';
-import {Textarea} from '../common/FormsControl';
+import {Textarea} from '../common/FormsControl/FormsControl';
 import JSONPretty from 'react-json-pretty';
 import {formatTextareaValue} from '../common/commonFunctions';
 import './Fields.scss';
