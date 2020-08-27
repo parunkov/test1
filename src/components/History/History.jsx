@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './History.scss';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {formatTextareaValue} from '../common/commonFunctions';
@@ -36,6 +36,10 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 }
 
 const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password}) => {
+	useEffect(() => {
+		localStorage.setItem('history', JSON.stringify(history));
+	});
+
 	return(
 		<div className="">
 			{[...history].reverse().map((item, i) => <HistoryItem 

@@ -1,5 +1,6 @@
 const ADD_ITEM = 'history/ADD_ITEM';
 const DELETE_ITEM = 'history/DELETE_ITEM';
+const SET_SAVED_HISTORY = 'history/SET_SAVED_HISTORY';
 
 const initialState = {
 	history: []
@@ -7,6 +8,12 @@ const initialState = {
 
 const historyReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case SET_SAVED_HISTORY: {
+			return {
+				...state,
+				...action.payload
+			}
+		}
 		case DELETE_ITEM: {
 			return {
 				...state,
@@ -39,6 +46,10 @@ export const addHistoryItem = (title, value, isError) => ({
 export const deleleHistoryItem = (title) => ({
 	type: DELETE_ITEM,
 	title
+});
+export const setSavedHistory = (history) => ({
+	type: SET_SAVED_HISTORY,
+	payload: {history}
 });
 
 export default historyReducer;

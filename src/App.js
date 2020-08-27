@@ -6,13 +6,15 @@ import LoginContainer from './components/Login/LoginContainer';
 import store from './redux/store';
 import {connect} from 'react-redux';
 import {setLogin} from './redux/login-reducer';
+import {setSavedHistory} from './redux/history-reducer';
 
-const ConsoleWrapper = ({isLogined, setLogin}) => {
+const ConsoleWrapper = ({isLogined, setLogin, setSavedHistory}) => {
 	useEffect(() => {
 		const savedLoginData = JSON.parse(localStorage.getItem('loginData'));
 		if (savedLoginData.isLogined) {
 			setLogin(savedLoginData.login, savedLoginData.sublogin, savedLoginData.password);
 		}
+		setSavedHistory(JSON.parse(localStorage.getItem('history')));
 	});
 
 	return(
@@ -26,7 +28,7 @@ const mapStateToProps = (state) => ({
 		isLogined: state.login.isLogined
 });
 
-const ConsoleWrapperContainer = connect(mapStateToProps, {setLogin})(ConsoleWrapper);
+const ConsoleWrapperContainer = connect(mapStateToProps, {setLogin, setSavedHistory})(ConsoleWrapper);
 
 function App() {
 	return (

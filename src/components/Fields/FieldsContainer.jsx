@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 		request: state.fields.request,
 		response: state.fields.response,
 		fieldFormattedValue: state.fields.fieldFormattedValue,
-		requestFieldValue: state.fields.requestFieldValue
+		requestFieldValue: state.fields.requestFieldValue,
 	}
 }
 
