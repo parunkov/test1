@@ -5,12 +5,11 @@ import {required, isJson} from '../../utils/validators/validators';
 import {Textarea} from '../common/FormsControl';
 import JSONPretty from 'react-json-pretty';
 import './Fields.scss';
-// import ContentEditable from 'react-contenteditable'
 
-const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, fieldValue, setValues}) => {
+const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, fieldValue, setValue}) => {
 	const setField = (fieldFormattedValue) => {
 		const fieldValue = fieldFormattedValue.replace(/<[^<>]+>/gi,'').replace(/&nbsp;/gi, '');
-		setValues(fieldFormattedValue, fieldValue);
+		setValue(fieldFormattedValue, fieldValue);
 		if (!isJson(fieldValue)) {
 			change('request', fieldValue);
 		}
@@ -33,7 +32,6 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 				title="Запрос:"
 				onChange={(evt) => onFieldChange(evt)} 
 			/>
-			{/*<ContentEditable className="Fields__field" onChange={(evt) => onFieldChange(evt)} html={fieldFormattedValue} />*/}
 			<div className="Fields__response">{response && 
 				<JSONPretty id="json-pretty" data={JSON.stringify(response, 0, 2)}></JSONPretty>}
 			</div>
@@ -49,7 +47,7 @@ const FieldsReduxForm = reduxForm ({
 	form: 'request'
 })(FieldsForm);
 
-const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, fieldValue, setValues}) => {
+const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, fieldValue, setValue}) => {
 	const onSubmit = (formData) => {
 		sendRequest(login, sublogin, password, JSON.parse(formData.request), fieldValue);
 	}
@@ -61,7 +59,7 @@ const Fields = ({login, sublogin, password, request, response, sendRequest, fiel
 				response={response} 
 				fieldFormattedValue={fieldFormattedValue} 
 				fieldValue={fieldValue} 
-				setValues={setValues} 
+				setValue={setValue} 
 			/>
 		</div>
 	)

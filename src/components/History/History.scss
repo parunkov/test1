@@ -3,13 +3,13 @@
 		border: 1px solid black;
 		margin-right: 5px;
 	}
-	&__error {
+	&__status {
 		display: inline-block;
 		width: 10px;
 		height: 10px;
 		background: green;
 		border-radius: 50%;
-		&_enabled {
+		&_theme_error {
 			background: red;
 		}
 	}

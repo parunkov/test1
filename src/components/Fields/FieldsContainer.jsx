@@ -1,6 +1,6 @@
 import Fields from './Fields';
 import {connect} from 'react-redux';
-import {sendRequest, setValues} from '../../redux/fields-reducer';
+import {sendRequest, setValue} from '../../redux/fields-reducer';
 
 const mapStateToProps = (state) => {
 	return {
@@ -14,4 +14,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, {sendRequest, setValues})(Fields);
+export default connect(mapStateToProps, {sendRequest, setValue})(Fields);

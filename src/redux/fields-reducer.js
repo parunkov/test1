@@ -37,7 +37,7 @@ const setError = () => ({
 	type: ERROR,
 	payload: {error: true}
 });
-export const setValues = (fieldFormattedValue, fieldValue) => ({
+export const setValue = (fieldFormattedValue, fieldValue) => ({
 	type: SET_VALUES,
 	payload: {fieldFormattedValue, fieldValue}
 });
