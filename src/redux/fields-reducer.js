@@ -4,21 +4,20 @@ import {addHistoryItem} from './history-reducer';
 
 const RESPONSE = 'fields/RESPONSE';
 const ERROR = 'fields/ERROR';
-const SET_VALUES = 'fields/SET_VALUES';
+const SET_VALUE = 'fields/SET_VALUE';
 
 const initialState = {
 	request: null,
 	response: null,
 	error: false,
-	fieldFormattedValue: '',
-	fieldValue: ''
+	requestFieldValue: ''
 }
 
 const fieldsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case RESPONSE:
 		case ERROR:
-		case SET_VALUES: {
+		case SET_VALUE: {
 			return {
 				...state,
 				...action.payload
@@ -37,23 +36,23 @@ const setError = () => ({
 	type: ERROR,
 	payload: {error: true}
 });
-export const setValue = (fieldFormattedValue, fieldValue) => ({
-	type: SET_VALUES,
-	payload: {fieldFormattedValue, fieldValue}
+export const setRequestFieldValue = (requestFieldValue) => ({
+	type: SET_VALUE,
+	payload: {requestFieldValue}
 });
 
-export const sendRequest = (login, sublogin, password, request, fieldValue) => (dispatch) => {
+export const sendRequest = (login, sublogin, password, request, requestFieldValue) => (dispatch) => {
 	const sendsay = new Sendsay({
 		auth: {login, sublogin, password}
 	});
 
 	sendsay.request(request).then(function(res) {
 		dispatch(setResponse(res));
-		dispatch(addHistoryItem(request.action, fieldValue, false));
+		dispatch(addHistoryItem(request.action, requestFieldValue, false));
 	}).catch(err => {
 		dispatch(setResponse(err));
 		dispatch(setError());
-		dispatch(addHistoryItem(request.action, fieldValue, true));
+		dispatch(addHistoryItem(request.action, requestFieldValue, true));
 	});
 }
 

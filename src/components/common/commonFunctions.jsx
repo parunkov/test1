@@ -5,6 +5,6 @@ import ReactDOMServer from 'react-dom/server';
 export const formatTextareaValue = (value) => {
 	const formattedValueElement = <JSONPretty id="json-pretty" data={value}></JSONPretty>
 	const formattedValue = ReactDOMServer.renderToString(formattedValueElement);
-	const fieldValue = formattedValue.replace(/<[^<>]+>/gi,'').replace(/&nbsp;/gi, '');
-	return fieldValue;
+	const requestFieldValue = formattedValue.replace(/<[^<>]+>/gi,'').replace(/&nbsp;/gi, '');
+	return requestFieldValue;
 }

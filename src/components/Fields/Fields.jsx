@@ -1,27 +1,21 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import {reduxForm, Field} from 'redux-form';
 import {required, isJson} from '../../utils/validators/validators';
 import {Textarea} from '../common/FormsControl';
 import JSONPretty from 'react-json-pretty';
+import {formatTextareaValue} from '../common/commonFunctions';
 import './Fields.scss';
 
-const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, fieldValue, setValue}) => {
-	const setField = (fieldFormattedValue) => {
-		const fieldValue = fieldFormattedValue.replace(/<[^<>]+>/gi,'').replace(/&nbsp;/gi, '');
-		setValue(fieldFormattedValue, fieldValue);
-		if (!isJson(fieldValue)) {
-			change('request', fieldValue);
+const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
+	const setField = (requestFieldValue) => {
+		setRequestFieldValue(requestFieldValue);
+		if (!isJson(requestFieldValue)) {
+			change('request', formatTextareaValue(requestFieldValue));
 		}
 	}
 	const onFieldChange = (evt) => {
-		const fieldFormattedValue = evt.target.value;
-		setField(fieldFormattedValue);
-	}
-	const onFormat = () => {
-		const formattedValueElement = <JSONPretty id="json-pretty" data={fieldValue}></JSONPretty>
-		const formattedValue = ReactDOMServer.renderToString(formattedValueElement);
-		setField(formattedValue);
+		const requestFieldValue = evt.target.value;
+		setField(requestFieldValue);
 	}
 	return (
 		<form onSubmit={handleSubmit} className="Fields__textareaWrapper">
@@ -37,7 +31,7 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 			</div>
 			<div className="">
 				<button type={"submit"}>Отправить</button>
-				<button type={"button"} onClick={() => onFormat()}>Форматировать</button>
+				<button type={"button"} onClick={() => setField(requestFieldValue)}>Форматировать</button>
 			</div>
 		</form>
 		)
@@ -47,9 +41,9 @@ const FieldsReduxForm = reduxForm ({
 	form: 'request'
 })(FieldsForm);
 
-const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, fieldValue, setValue}) => {
+const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
 	const onSubmit = (formData) => {
-		sendRequest(login, sublogin, password, JSON.parse(formData.request), fieldValue);
+		sendRequest(login, sublogin, password, JSON.parse(formData.request), requestFieldValue);
 	}
 
 	return(
@@ -58,8 +52,8 @@ const Fields = ({login, sublogin, password, request, response, sendRequest, fiel
 				onSubmit={onSubmit} 
 				response={response} 
 				fieldFormattedValue={fieldFormattedValue} 
-				fieldValue={fieldValue} 
-				setValue={setValue} 
+				requestFieldValue={requestFieldValue} 
+				setRequestFieldValue={setRequestFieldValue} 
 			/>
 		</div>
 	)
