@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './History.scss';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {formatTextareaValue} from '../common/commonFunctions';
@@ -8,12 +8,12 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	const [copied, setCopied] = useState(false);
 
 	return(
-		<span className="History__item" onMouseDown={() => {
+		<span className="history__item" onMouseDown={() => {
 			change('request', 'request', formatTextareaValue(item.value));
 		}}>
-			<span className={item.isError ? "History__status History__status_theme_error" : "History__status"}></span>
-			<span className="History__title">{copied ? "Скопировано" : item.title}</span>
-			<button className="History__button" onClick={() => setPopup(!popup)}>...</button>
+			<span className={item.isError ? "history__status history__status_theme_error" : "history__status"}></span>
+			<span className="history__title">{copied ? "Скопировано" : item.title}</span>
+			<button className="history__item-button" onClick={() => setPopup(!popup)}>...</button>
 			{popup && <div>
 				<div className="" onClick={() => {
 					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
@@ -25,7 +25,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 					setTimeout(setCopied, 2000, false);
 				}}>
 					<div className="">Скопировать</div>
-				</CopyToClipboard>				
+				</CopyToClipboard>              
 				<div className="" onClick={() => {
 					deleleHistoryItem(item.title);
 					setPopup(false);
@@ -40,10 +40,34 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
 
+
+
+	const useHorizontalScroll = () => {
+		const elRef = useRef();
+		useEffect(() => {
+			const el = elRef.current;
+			if (el) {
+				const onWheel = e => {
+					e.preventDefault();
+					el.scrollTo({
+						left: el.scrollLeft + e.deltaY,
+						behavior: "smooth"
+					});
+				};
+				el.addEventListener("wheel", onWheel);
+				return () => el.removeEventListener("wheel", onWheel);
+			}
+		}, []);
+		return elRef;
+	}
+
+	const scrollRef = useHorizontalScroll();
+
 	return(
-		<div className="">
-			<div className="">
-				<span>
+		<div className="history">
+			<div className="history__container" ref={scrollRef}>
+				{/*<div className="history__items" style={{ whiteSpace: "nowrap" }}>*/}
+				<div className="history__items">
 					{[...history].reverse().map((item, i) => <HistoryItem 
 						key={i} 
 						className="" 
@@ -54,9 +78,11 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 						login={login}
 						sublogin={sublogin}
 						password={password} />)}
-				</span>
-				<button onClick={() => setSavedHistory([])}>Clear history</button>
+				</div>
 			</div>
+			<span className="history__button">
+				<button onClick={() => setSavedHistory([])}>Clear history</button>
+			</span>
 		</div>
 	)
 }

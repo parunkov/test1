@@ -6,13 +6,14 @@
 	flex-direction: column;
 }
 .fullscreen-enabled {
-	background: #E5E5E5;
+	background: #F6F6F6;
 }
 
 .console {
 	position: relative;
 	min-width: 640px;
 	min-height: 520px;
+	background: #F6F6F6;
 	// width: 100%;
 	// height: 100%;
 	// display: flex;
@@ -20,6 +21,7 @@
 	// flex-direction: column;
 	&__header {
 		flex: 0 0 50px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
 	&__button {
 		position: absolute;
@@ -28,6 +30,7 @@
 	}
 	&__history {
 		flex: 0 0 50px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
 	&__fields {
 		flex: auto;

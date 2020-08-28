@@ -1,7 +1,20 @@
-.History {
+.history {
+	position: relative;
+	padding-right: 50px;
+	&__container {
+		overflow: hidden;
+	}
+	&__items {
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		white-space: nowrap;
+	}
 	&__item {
+		display: block;
 		border: 1px solid black;
 		margin-right: 5px;
+		flex: 0 0 auto;
 	}
 	&__status {
 		display: inline-block;
@@ -12,5 +25,10 @@
 		&_theme_error {
 			background: red;
 		}
+	}
+	&__button {
+		position: absolute;
+		top: 0;
+		right: 0;
 	}
 }
