@@ -14,9 +14,12 @@ const Console = () => {
 				{!handle.active && <Button type="button" onClick={handle.enter} text="Полноэкранный режим" modifiers={['themeFullscreen']} />}
 			</div>
 			<FullScreen handle={handle}>
-				{handle.active && <button onClick={handle.exit}>
-					Exit fullscreen
-				</button>}
+				<div className="console__button">
+					{/*handle.active && <button onClick={handle.exit}>
+						Exit fullscreen
+					</button>*/}
+					{handle.active && <Button type="button" onClick={handle.exit} text="Выход из полноэкранного режима" modifiers={['themeExitFullscreen']} />}
+				</div>
 				<div className="console__header">
 					<HeaderContainer />
 				</div>
