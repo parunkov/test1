@@ -11,14 +11,11 @@ const Console = () => {
 	return (
 		<div className="console">
 			<div className="console__button">
-				{!handle.active && <Button type="button" onClick={handle.enter} text="Полноэкранный режим" modifiers={['themeFullscreen']} />}
+				{!handle.active && <Button type="button" onClick={handle.enter} text="Полноэкранный режим" modifiers={['themeLight', 'iconFullscreen']} />}
 			</div>
 			<FullScreen handle={handle}>
 				<div className="console__button">
-					{/*handle.active && <button onClick={handle.exit}>
-						Exit fullscreen
-					</button>*/}
-					{handle.active && <Button type="button" onClick={handle.exit} text="Выход из полноэкранного режима" modifiers={['themeExitFullscreen']} />}
+					{handle.active && <Button type="button" onClick={handle.exit} text="Выход из полноэкранного режима" modifiers={['themeLight', 'iconExitFullscreen']} />}
 				</div>
 				<div className="console__header">
 					<HeaderContainer />

@@ -7,8 +7,9 @@ const Button = (props) => {
 		props.modifiers.forEach((item) => {
 			buttonClassName = item === 'themeLight' ? buttonClassName + ' button_theme_light' : buttonClassName;
 			buttonClassName = item === 'stateWaitig' ? buttonClassName + ' button_state_waiting' : buttonClassName;
-			buttonClassName = item === 'themeFullscreen' ? buttonClassName + ' button_theme_fullscreen' : buttonClassName;
-			buttonClassName = item === 'themeExitFullscreen' ? buttonClassName + ' button_theme_exit-fullscreen' : buttonClassName;
+			buttonClassName = item === 'iconFullscreen' ? buttonClassName + ' button_icon_fullscreen' : buttonClassName;
+			buttonClassName = item === 'iconExitFullscreen' ? buttonClassName + ' button_icon_exit-fullscreen' : buttonClassName;
+			buttonClassName = item === 'iconExit' ? buttonClassName + ' button_icon_exit' : buttonClassName;
 		});
 	}
 	return(

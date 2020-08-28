@@ -1,0 +1,28 @@
+.header {
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-right: 64px;
+	&__logo {
+		display: inline-block;
+		width: 115px;
+		height: 30px;
+		margin-right: 19px;
+	}
+	&__title {
+		display: inline-block;
+		vertical-align: top;
+		font-size: 20px;
+		line-height: 30px;
+		letter-spacing: 1px;
+	}
+	&__user-block {
+		display: inline-block;
+		float: right;
+		vertical-align: top;
+	}
+	&__button {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 30px;
+	}
+}
