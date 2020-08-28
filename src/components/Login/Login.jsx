@@ -4,8 +4,9 @@ import {required, emailOrString, stringWithSpace} from '../../utils/validators/v
 import {Input} from '../common/FormsControl/FormsControl';
 import './Login.scss';
 import Logo from '../common/Logo/Logo';
+import Button from '../common/Button/Button';
 
-const LoginForm = ({handleSubmit, error, loginError}) => {
+const LoginForm = ({handleSubmit, error, loginError, isWaiting}) => {
 	return (
 		<form onSubmit={handleSubmit} className="login__form">
 			<h1 className="login__title">API-консолька</h1>
@@ -16,11 +17,17 @@ const LoginForm = ({handleSubmit, error, loginError}) => {
 				</div> 
 				<div className="login__error-text">{loginError}</div>
 			</div>}
-			<Field component={Input} name={"login"} validate={[required, emailOrString]} title="Логин" />
-			<Field component={Input} name={"sublogin"} title="Сублогин" subtitle="Опционально" />
-			<Field component={Input} name={"password"} password={"true"} validate={[required, stringWithSpace]} type={"password"} title="Пароль" />
-			<div className="">
-				<button type={"submit"}>Войти</button>
+			<div className="login__input">
+				<Field component={Input} name={"login"} validate={[required, emailOrString]} title="Логин" />
+			</div>
+			<div className="login__input">
+				<Field component={Input} name={"sublogin"} title="Сублогин" subtitle="Опционально" />
+			</div>
+			<div className="login__input">
+				<Field component={Input} name={"password"} password={"true"} validate={[required, stringWithSpace]} type={"password"} title="Пароль" />
+			</div>
+			<div className="login__button">
+				<Button type="submit" text="Войти" modifiers={isWaiting ? ['stateWaitig'] : null} />
 			</div>
 		</form>
 		)
@@ -30,8 +37,9 @@ const LoginReduxForm = reduxForm ({
 	form: 'login'
 })(LoginForm);
 
-const Login = ({checkLogin, error}) => {
+const Login = ({checkLogin, error, isWaiting, setWaiting}) => {
 	const onSubmit = (formData) => {
+		setWaiting();
 		checkLogin(formData.login, formData.sublogin, formData.password);
 	}
 	return (
@@ -39,7 +47,8 @@ const Login = ({checkLogin, error}) => {
 			<div className="login__logo">
 				<Logo />
 			</div>
-			<LoginReduxForm onSubmit={onSubmit} loginError={error} />
+			<LoginReduxForm onSubmit={onSubmit} loginError={error} isWaiting={isWaiting} />
+			<a href="https://github.com/parunkov/test1" className="login__link" target="_blank" rel="noopener noreferrer">@parunkov</a>
 		</div>
 	)
 		

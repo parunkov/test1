@@ -14,6 +14,7 @@
 		background: #FFFFFF;
 		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 		border-radius: 5px;
+		margin-bottom: 20px;
 	}
 	&__title {
 		
@@ -60,5 +61,24 @@
 		color: #CF2C00;
 		opacity: 0.5;
 		letter-spacing: 0.35px;
+	}
+	&__input {
+		margin-bottom: 22px;
+		&:nth-child(4) {
+			margin-bottom: 18px;
+		}
+	}
+	&__button {
+		display: inline-block;
+		min-width: 110px;
+	}
+	&__link {
+		display: block;
+		text-align: center;
+		margin-bottom: 183px;
+		font-size: 16px;
+		line-height: 20px;
+		color: #999999;
+		text-decoration: none;
 	}
 }

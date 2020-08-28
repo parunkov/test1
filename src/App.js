@@ -15,7 +15,7 @@ const ConsoleWrapper = ({isLogined, setLogin, setSavedHistory}) => {
 			setLogin(savedLoginData.login, savedLoginData.sublogin, savedLoginData.password);
 		}
 		setSavedHistory(JSON.parse(localStorage.getItem('history')));
-	}, []);
+	}, [setLogin, setSavedHistory]);
 
 	return(
 		<div>
