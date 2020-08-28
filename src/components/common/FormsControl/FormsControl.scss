@@ -14,8 +14,7 @@
 	}
 	&__subtitle {
 		float: right;
-		font-style: normal;
-		font-weight: normal;
+		
 		font-size: 12px;
 		line-height: 20px;
 		color: #999999;
@@ -24,8 +23,7 @@
 	&__input {
 		padding: 3px 8px;
 		width: 100%;
-		font-style: normal;
-		font-weight: normal;
+		
 		font-size: 18px;
 		line-height: 30px;
 		border: 1px solid rgba(0, 0, 0, 0.2);
@@ -35,9 +33,6 @@
 			font-size: 50px;
 			height: 40px;
 		}
-		// font-size: 50px;
-  // margin-top: -14px;
-  // height: 30px;
 		&:hover {
 			border: 1px solid rgba(0, 0, 0, 0.4);
 		}

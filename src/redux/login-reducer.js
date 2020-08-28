@@ -50,7 +50,8 @@ export const checkLogin = (login, sublogin, password) => (dispatch) => {
 		localStorage.setItem('loginData', JSON.stringify({isLogined: true, login, sublogin, password}));
 		dispatch(setLogin(login, sublogin, password));
 	}).catch(err => {
-		dispatch(setError(err.explain));
+		const errorText = `{id: "${err.id}", explain: "${err.explain}"}`;
+		dispatch(setError(errorText));
 	});
 }
 
