@@ -8,6 +8,20 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [copied, setCopied] = useState(false);
 
+	useEffect(() => {
+		const el = document.querySelector('.history__dropdown');
+		if (el) {
+			const onClick = (e) => {
+				if (!el.contains(e.target)) {
+					console.log(1);
+					setDropdownOpened(false);
+				}
+			}
+			window.addEventListener('click', onClick);
+			return () => window.removeEventListener('click', onClick);
+		}
+	});
+
 	return(
 		<span className="history__item" onMouseDown={() => {
 			change('request', 'request', formatTextareaValue(item.value));

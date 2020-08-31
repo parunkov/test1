@@ -39,6 +39,8 @@
 		}
 	}
 	&__title {
+		display: inline-block;
+		min-width: 79px;
 		letter-spacing: 0.7px;
 		margin-right: 8px;
 	}
