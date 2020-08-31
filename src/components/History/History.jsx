@@ -4,7 +4,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {formatTextareaValue} from '../common/commonFunctions';
 import Button from '../common/Button/Button';
 
-const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password}) => {
+const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password, openToTop}) => {
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [copied, setCopied] = useState(false);
 
@@ -18,7 +18,9 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 				<Button type="button" onClick={() => setDropdownOpened(!dropdownOpened)} text="..." modifiers={['iconDots']} />
 			</span>
 			<span className="history__dropdown-wrapper">
-				{dropdownOpened && <div className="history__dropdown">
+				{dropdownOpened && <div className={
+					openToTop ? "history__dropdown history__dropdown_position_top" : "history__dropdown"
+				}>
 					<div className="history__dropdown-item" onClick={() => {
 						sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
 						setDropdownOpened(false);
@@ -42,9 +44,39 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 }
 
 const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password, setSavedHistory}) => {
+
+	const [openToTop, setOpenToTop] = useState(false);
+
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
+
+	const useResize = () => {
+		const elRef = useRef();
+		useEffect(() => {
+			const el = elRef.current;
+			if (el) {
+				const onResize = () => {
+					const distanceToBottom = document.documentElement.clientHeight - el.getBoundingClientRect().y;
+					if (distanceToBottom < 170) {
+						setOpenToTop(true);
+					} else {
+						setOpenToTop(false);
+					}
+				}
+				onResize();
+				window.addEventListener('resize', onResize);
+				window.addEventListener('scroll', onResize);
+				return () => {
+					window.removeEventListener('resize', onResize);
+					window.removeEventListener('scroll', onResize);
+				}
+			}
+		},[]);
+		return elRef;
+	}
+
+	const itemsRef = useResize();
 
 	const useHorizontalScroll = () => {
 		const elRef = useRef();
@@ -70,7 +102,7 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 	return(
 		<div className="history">
 			<div className="history__container" ref={scrollRef}>
-				<div className="history__items">
+				<div className="history__items" ref={itemsRef}>
 					{[...history].reverse().map((item, i) => <HistoryItem 
 						key={i} 
 						className="" 
@@ -80,7 +112,8 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 						sendRequest={sendRequest}
 						login={login}
 						sublogin={sublogin}
-						password={password} />)}
+						password={password}
+						openToTop={openToTop} />)}
 				</div>
 			</div>
 			<span className="history__button">
