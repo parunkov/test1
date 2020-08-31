@@ -29,10 +29,13 @@
 		right: 8px;
 	}
 	&__history {
+		position: relative;
 		flex: 0 0 50px;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+		// z-index: 10;
 	}
 	&__fields {
+		// position: relative;
 		flex: auto;
 		display: flex;
 	}	

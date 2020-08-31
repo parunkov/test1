@@ -5,7 +5,7 @@ import {formatTextareaValue} from '../common/commonFunctions';
 import Button from '../common/Button/Button';
 
 const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password}) => {
-	const [popup, setPopup] = useState(false);
+	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [copied, setCopied] = useState(false);
 
 	return(
@@ -15,26 +15,28 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 			<span className={item.isError ? "history__status history__status_theme_error" : "history__status"}></span>
 			<span className="history__title">{copied ? "Скопировано" : item.title}</span>
 			<span className="history__item-button">
-				<Button type="button" onClick={() => setPopup(!popup)} text="..." modifiers={['iconDots']} />
+				<Button type="button" onClick={() => setDropdownOpened(!dropdownOpened)} text="..." modifiers={['iconDots']} />
 			</span>
-			{/*<button className="history__item-button" onClick={() => setPopup(!popup)}>...</button>*/}
-			{popup && <div>
-				<div className="" onClick={() => {
-					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
-					setPopup(false);
-				}}>Выполнить</div>
-				<CopyToClipboard text={item.value} onCopy={() => {
-					setCopied(true);
-					setPopup(false);
-					setTimeout(setCopied, 2000, false);
-				}}>
-					<div className="">Скопировать</div>
-				</CopyToClipboard>              
-				<div className="" onClick={() => {
-					deleleHistoryItem(item.title);
-					setPopup(false);
-				}}>Удалить</div>
-				</div>}
+			<span className="history__dropdown-wrapper">
+				{dropdownOpened && <div className="history__dropdown">
+					<div className="history__dropdown-item" onClick={() => {
+						sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
+						setDropdownOpened(false);
+					}}>Выполнить</div>
+					<CopyToClipboard text={item.value} onCopy={() => {
+						setCopied(true);
+						setDropdownOpened(false);
+						setTimeout(setCopied, 2000, false);
+					}}>
+						<div className="history__dropdown-item">Скопировать</div>
+					</CopyToClipboard> 
+					<div className="history__dropdown-item-border"></div>         
+					<div className="history__dropdown-item history__dropdown-item_theme_destructive" onClick={() => {
+						deleleHistoryItem(item.title);
+						setDropdownOpened(false);
+					}}>Удалить</div>
+					</div>}
+			</span>
 		</span>
 	)
 }
