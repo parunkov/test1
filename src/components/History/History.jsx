@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import './History.scss';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {formatTextareaValue} from '../common/commonFunctions';
+import Button from '../common/Button/Button';
 
 const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password}) => {
 	const [popup, setPopup] = useState(false);
@@ -13,7 +14,10 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 		}}>
 			<span className={item.isError ? "history__status history__status_theme_error" : "history__status"}></span>
 			<span className="history__title">{copied ? "Скопировано" : item.title}</span>
-			<button className="history__item-button" onClick={() => setPopup(!popup)}>...</button>
+			<span className="history__item-button">
+				<Button type="button" onClick={() => setPopup(!popup)} text="..." modifiers={['iconDots']} />
+			</span>
+			{/*<button className="history__item-button" onClick={() => setPopup(!popup)}>...</button>*/}
 			{popup && <div>
 				<div className="" onClick={() => {
 					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
@@ -40,8 +44,6 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
 
-
-
 	const useHorizontalScroll = () => {
 		const elRef = useRef();
 		useEffect(() => {
@@ -66,7 +68,6 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 	return(
 		<div className="history">
 			<div className="history__container" ref={scrollRef}>
-				{/*<div className="history__items" style={{ whiteSpace: "nowrap" }}>*/}
 				<div className="history__items">
 					{[...history].reverse().map((item, i) => <HistoryItem 
 						key={i} 

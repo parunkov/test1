@@ -10,6 +10,7 @@ const Button = (props) => {
 			buttonClassName = item === 'iconFullscreen' ? buttonClassName + ' button_icon_fullscreen' : buttonClassName;
 			buttonClassName = item === 'iconExitFullscreen' ? buttonClassName + ' button_icon_exit-fullscreen' : buttonClassName;
 			buttonClassName = item === 'iconExit' ? buttonClassName + ' button_icon_exit' : buttonClassName;
+			buttonClassName = item === 'iconDots' ? buttonClassName + ' button_icon_dots' : buttonClassName;
 		});
 	}
 	return(

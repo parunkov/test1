@@ -88,4 +88,22 @@
 			background-position: center right;
 		}
 	}
+	&_icon_dots {
+		font-size: 0;
+		min-height: 20px;
+		height: 20px;
+		background: transparent;
+		background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%224%22%20height%3D%2218%22%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%222%22%20cy%3D%222%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%2216%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3C%2Fsvg%3E');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-position-y: 0.3px;
+		&:hover, &:focus {
+			background: transparent;
+			background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%224%22%20height%3D%2218%22%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%222%22%20cy%3D%222%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%229%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3Ccircle%20cx%3D%222%22%20cy%3D%2216%22%20r%3D%222%22%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%2F%3E%3C%2Fsvg%3E');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-position-y: 0.3px;
+			border: none;
+		}
+	}
 }
