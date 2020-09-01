@@ -1,22 +1,24 @@
 .history {
-	// position: relative;
 	padding-right: 50px;
-	// z-index: 10;
 	&__container {
-		// position: relative;
+		height: 185px;
+		margin-bottom: -140px;
+		position: relative;
 		overflow: hidden;
 		padding-left: 15px;
 		padding-top: 10px;
 	}
 	&__items {
-		// position: relative;
+		position: absolute;
+		top: 0;
+		width: 100%;
 		display: flex;
 		flex-wrap: nowrap;
 		flex-direction: row;
 		white-space: nowrap;
 	}
 	&__item {
-		// position: relative;
+		position: relative;
 		display: block;
 		padding: 5px 10px;
 		margin-right: 10px;
@@ -56,12 +58,14 @@
 		margin-right: 2px;
 	}
 	&__dropdown-wrapper {
-		position: absolute;
+		// position: absolute;
 	}
 	&__dropdown {
 		position: absolute;
-		bottom: -26px;
-		right: -11px;
+		bottom: 0;
+		right: 0;
+		// bottom: -26px;
+		// right: -11px;
 		padding: 5px 0px;
 		transform: translate(0, 100%);
 		z-index: 10;
