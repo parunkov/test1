@@ -3,7 +3,7 @@ import './Header.scss';
 import Logo from '../common/Logo/Logo';
 import Button from '../common/Button/Button';
 
-const Header = ({login, sublogin = 'sublogin', logout}) => {
+const Header = ({login, sublogin, logout}) => {
 	const onBtnClick = () => {
 		localStorage.setItem('loginData', JSON.stringify({isLogined: false, login: null, sublogin: null, password: null}));
 		logout();
