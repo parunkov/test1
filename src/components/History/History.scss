@@ -26,6 +26,9 @@
 		background: #FFFFFF;
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 		border-radius: 5px;
+		&:hover {
+			box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+		}
 	}
 	&__status {
 		display: inline-block;
@@ -42,7 +45,7 @@
 	&__title {
 		position: relative;
 		display: inline-block;
-		min-width: 79px;
+		min-width: 85px;
 		letter-spacing: 0.7px;
 		margin-right: 8px;
 		overflow: hidden;
@@ -52,6 +55,7 @@
 		display: inline-block;
 		top: 0;
 		left: 0;
+		width: 100%;
 		height: 20px;
 		font-size: 12px;
 		line-height: 20px;
