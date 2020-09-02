@@ -3,7 +3,7 @@ import './Header.scss';
 import Logo from '../common/Logo/Logo';
 import Button from '../common/Button/Button';
 
-const Header = ({login, sublogin, logout}) => {
+const Header = ({login, sublogin = 'sublogin', logout}) => {
 	const onBtnClick = () => {
 		localStorage.setItem('loginData', JSON.stringify({isLogined: false, login: null, sublogin: null, password: null}));
 		logout();
@@ -16,8 +16,8 @@ const Header = ({login, sublogin, logout}) => {
 			<h1 className="header__title">API-консолька</h1>
 			<span className="header__user-block">
 				<span className="header__user">
-					<span className="">{login}</span>
-					{sublogin && <span className="">
+					<span className="header__login">{login}</span>
+					{sublogin && <span className="header__sublogin">
 						<span className="header__login-separator"> : </span>
 						{sublogin}
 					</span>}

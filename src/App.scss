@@ -1,2 +1,10 @@
-.App {
+#root {
+	height: 100%;
+}
+
+.app {
+	height: 100%;
+	&__console {
+		height: 100%;
+	}
 }

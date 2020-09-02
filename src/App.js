@@ -18,7 +18,7 @@ const ConsoleWrapper = ({isLogined, setLogin, setSavedHistory}) => {
 	}, [setLogin, setSavedHistory]);
 
 	return(
-		<div>
+		<div className="app__console">
 			{!isLogined ? <LoginContainer /> : <Console />}
 		</div>
 	)
@@ -33,7 +33,7 @@ const ConsoleWrapperContainer = connect(mapStateToProps, {setLogin, setSavedHist
 function App() {
 	return (
 		<Provider store={store}>
-			<div className="App">
+			<div className="app">
 					<ConsoleWrapperContainer />
 			</div>
 		 </Provider>
