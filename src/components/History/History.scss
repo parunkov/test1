@@ -37,11 +37,13 @@
 	&__status {
 		display: inline-block;
 		margin-right: 5px;
+		margin-top: 5px;
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		background: #30B800;
 		border: 1px solid rgba(0, 0, 0, 0.2);
+		vertical-align: top;
 		&_theme_error {
 			background: red;
 		}
@@ -50,9 +52,11 @@
 		position: relative;
 		display: inline-block;
 		min-width: 85px;
+		height: 18px;
 		letter-spacing: 0.7px;
 		margin-right: 8px;
 		overflow: hidden;
+		vertical-align: top;
 	}
 	&__item-copied {
 		position: absolute;
