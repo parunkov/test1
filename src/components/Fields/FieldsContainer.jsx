@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 		response: state.fields.response,
 		fieldFormattedValue: state.fields.fieldFormattedValue,
 		requestFieldValue: state.fields.requestFieldValue,
+		error: state.fields.error
 	}
 }
 

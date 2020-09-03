@@ -6,7 +6,7 @@ import JSONPretty from 'react-json-pretty';
 import {formatTextareaValue} from '../common/commonFunctions';
 import './Fields.scss';
 
-const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
+const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue, responseError}) => {
 	const setField = (requestFieldValue) => {
 		setRequestFieldValue(requestFieldValue);
 		if (!isJson(requestFieldValue)) {
@@ -27,11 +27,11 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 						validate={[required, isJson]} 
 						title="Запрос:"
 						onChange={(evt) => onFieldChange(evt)}
-						flex={true}
+						flex={"true"}
 					/>
 				</div>
 				<div className="fields__resizer"></div>
-				<div className="fields__response-wrapper">
+				<div className={responseError ? "fields__response-wrapper fields__response-wrapper_theme_error" : "fields__response-wrapper"}>
 					<div className="fields__response-title">Ответ:</div>
 					<div className="fields__response">
 						<div className="fields__response-inner">{response && 
@@ -52,7 +52,7 @@ const FieldsReduxForm = reduxForm ({
 	form: 'request'
 })(FieldsForm);
 
-const Fields = ({login, sublogin, password, request, response, sendRequest, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
+const Fields = ({login, sublogin, password, request, response, error, sendRequest, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
 	const onSubmit = (formData) => {
 		sendRequest(login, sublogin, password, JSON.parse(formData.request), requestFieldValue);
 	}
@@ -65,6 +65,7 @@ const Fields = ({login, sublogin, password, request, response, sendRequest, fiel
 				fieldFormattedValue={fieldFormattedValue} 
 				requestFieldValue={requestFieldValue} 
 				setRequestFieldValue={setRequestFieldValue} 
+				responseError={error}
 			/>
 		</div>
 	)

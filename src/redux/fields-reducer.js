@@ -4,6 +4,7 @@ import {addHistoryItem} from './history-reducer';
 
 const RESPONSE = 'fields/RESPONSE';
 const ERROR = 'fields/ERROR';
+const DELETE_ERROR = 'fields/DELETE_ERROR';
 const SET_VALUE = 'fields/SET_VALUE';
 
 const initialState = {
@@ -17,6 +18,7 @@ const fieldsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case RESPONSE:
 		case ERROR:
+		case DELETE_ERROR:
 		case SET_VALUE: {
 			return {
 				...state,
@@ -36,6 +38,10 @@ const setError = () => ({
 	type: ERROR,
 	payload: {error: true}
 });
+const deleteError = () => ({
+	type: DELETE_ERROR,
+	payload: {error: false}
+});
 export const setRequestFieldValue = (requestFieldValue) => ({
 	type: SET_VALUE,
 	payload: {requestFieldValue}
@@ -48,6 +54,7 @@ export const sendRequest = (login, sublogin, password, request, requestFieldValu
 
 	sendsay.request(request).then(function(res) {
 		dispatch(setResponse(res));
+		dispatch(deleteError());
 		dispatch(addHistoryItem(request.action, requestFieldValue, false));
 	}).catch(err => {
 		dispatch(setResponse(err));

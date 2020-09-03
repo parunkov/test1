@@ -107,7 +107,6 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 			if (el) {
 				const onWheel = e => {
 					e.preventDefault();
-					console.log(el.scrollLeft);
 					el.scrollTo({
 						left: el.scrollLeft + e.deltaY,
 						behavior: "smooth"
