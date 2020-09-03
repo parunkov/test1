@@ -33,15 +33,37 @@
 	}
 	&__response-wrapper {
 		flex: auto;
-		// width: 100%;
-		overflow: auto;
+		width: 100%;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+	&__response-title {
+		font-size: 12px;
+		line-height: 20px;
+		width: 100%;
+		color: #999999;
+		flex: 0 0 auto;
+		text-align: left;
+		overflow: hidden;
 	}
 	&__response {
+		padding: 10px;
 		text-align: left;
-		border: 1px solid black;
-		height: 200px;
+		// border: 1px solid black;
+		height: 100%;
 		width: 100%;
-		// overflow: scroll;
+		flex: auto;
+		// font-size: 14px;
+		// line-height: 18px;
+		overflow: auto;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 5px;
+	}
+	&__response-inner {
+		font-size: 14px;
+		line-height: 18px;
 	}
 	&__footer {
 		position: absolute;

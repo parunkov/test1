@@ -32,8 +32,11 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 				</div>
 				<div className="fields__resizer"></div>
 				<div className="fields__response-wrapper">
-					<div className="fields__response">{response && 
-						<JSONPretty id="json-pretty" data={JSON.stringify(response, 0, 2)}></JSONPretty>}
+					<div className="fields__response-title">Ответ:</div>
+					<div className="fields__response">
+						<div className="fields__response-inner">{response && 
+							<JSONPretty id="json-pretty" data={JSON.stringify(response, 0, 2)}></JSONPretty>}
+						</div>
 					</div>
 				</div>
 			</div>
