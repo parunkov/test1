@@ -18,18 +18,26 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 		setField(requestFieldValue);
 	}
 	return (
-		<form onSubmit={handleSubmit} className="Fields__textareaWrapper">
-			<Field 
-				component={Textarea} 
-				name={"request"} 
-				validate={[required, isJson]} 
-				title="Запрос:"
-				onChange={(evt) => onFieldChange(evt)} 
-			/>
-			<div className="Fields__response">{response && 
-				<JSONPretty id="json-pretty" data={JSON.stringify(response, 0, 2)}></JSONPretty>}
+		<form onSubmit={handleSubmit} className="fields__form">
+			<div className="fields__container">
+				<div className="fields__textarea-wrapper">
+					<Field 
+						component={Textarea} 
+						name={"request"} 
+						validate={[required, isJson]} 
+						title="Запрос:"
+						onChange={(evt) => onFieldChange(evt)}
+						flex={true}
+					/>
+				</div>
+				<div className="fields__resizer"></div>
+				<div className="fields__response-wrapper">
+					<div className="fields__response">{response && 
+						<JSONPretty id="json-pretty" data={JSON.stringify(response, 0, 2)}></JSONPretty>}
+					</div>
+				</div>
 			</div>
-			<div className="">
+			<div className="fields__footer">
 				<button type={"submit"}>Отправить</button>
 				<button type={"button"} onClick={() => setField(requestFieldValue)}>Форматировать</button>
 			</div>
@@ -47,7 +55,7 @@ const Fields = ({login, sublogin, password, request, response, sendRequest, fiel
 	}
 
 	return(
-		<div className="">
+		<div className="fields">
 			<FieldsReduxForm 
 				onSubmit={onSubmit} 
 				response={response} 

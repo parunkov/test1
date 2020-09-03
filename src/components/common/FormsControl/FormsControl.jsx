@@ -4,7 +4,7 @@ import './FormsControl.scss';
 const FormsControl = ({input, meta: {touched, error}, ...props}) => {
 	const hasError = touched && error;
 	return (
-		<div className={"form-control" + (hasError ? " form-control_theme_error" : '')}>
+		<div className={"form-control" + (hasError ? " form-control_theme_error" : '') + (props.flex ? " form-control_size_flex" : '')}>
 			{props.children}
 		</div>
 	)
@@ -24,7 +24,7 @@ export const Textarea = (props) => {
 	const {input, meta, setValidationError, ...restProps} = props;
 	return (
 		<FormsControl {...props}>
-			<div className="form-control__title">{props.title}</div>
+			<div className="form-control__title form-control__title_size_small">{props.title}</div>
 			<textarea className="form-control__textarea" {...input} {...restProps} />
 		</FormsControl>
 	)
