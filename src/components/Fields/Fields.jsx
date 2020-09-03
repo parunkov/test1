@@ -29,10 +29,8 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 					e.preventDefault();
 					const container = document.querySelector('.fields__container');
 					const width = container.offsetWidth;
-					// console.log(width);
 					const onMouseMove = e => {
 						e.preventDefault();
-						console.log(e.clientX - shiftX);
 						const x = e.clientX - shiftX;
 						const precent = x / width * 100;
 						const flexValue = `0 0 ${precent}%`;
@@ -40,12 +38,10 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 					}
 					const onMouseUp = e => {
 						e.preventDefault();
-						// console.log('up');
 						document.removeEventListener("mousemove", onMouseMove);
 						document.removeEventListener("mouseup", onMouseUp);	
 					}
 					let shiftX = e.clientX - el.getBoundingClientRect().left;
-					console.log(shiftX);
 					document.addEventListener("mousemove", onMouseMove);
 					document.addEventListener("mouseup", onMouseUp);
 				};

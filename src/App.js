@@ -11,10 +11,14 @@ import {setSavedHistory} from './redux/history-reducer';
 const ConsoleWrapper = ({isLogined, setLogin, setSavedHistory}) => {
 	useEffect(() => {
 		const savedLoginData = JSON.parse(localStorage.getItem('loginData'));
-		if (savedLoginData.isLogined) {
+		if (savedLoginData && savedLoginData.isLogined) {
 			setLogin(savedLoginData.login, savedLoginData.sublogin, savedLoginData.password);
 		}
-		setSavedHistory(JSON.parse(localStorage.getItem('history')));
+		let savedHistory = JSON.parse(localStorage.getItem('history'));
+		if (!savedHistory) {
+			savedHistory = [];
+		}
+		setSavedHistory(savedHistory);
 	}, [setLogin, setSavedHistory]);
 
 	return(
