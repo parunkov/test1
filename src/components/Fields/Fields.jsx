@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, isJson} from '../../utils/validators/validators';
 import {Textarea} from '../common/FormsControl/FormsControl';
@@ -7,6 +7,8 @@ import {formatTextareaValue} from '../common/commonFunctions';
 import './Fields.scss';
 
 const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue, responseError}) => {
+	const [fieldStyle, setFieldStyle] = useState({flex: "0 0 49.6%"});
+
 	const setField = (requestFieldValue) => {
 		setRequestFieldValue(requestFieldValue);
 		if (!isJson(requestFieldValue)) {
@@ -17,10 +19,49 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 		const requestFieldValue = evt.target.value;
 		setField(requestFieldValue);
 	}
+
+	const useDrag = () => {
+		const elRef = useRef();
+		useEffect(() => {
+			const el = elRef.current;
+			if (el) {
+				const onMouseDown = e => {
+					e.preventDefault();
+					const container = document.querySelector('.fields__container');
+					const width = container.offsetWidth;
+					// console.log(width);
+					const onMouseMove = e => {
+						e.preventDefault();
+						console.log(e.clientX - shiftX);
+						const x = e.clientX - shiftX;
+						const precent = x / width * 100;
+						const flexValue = `0 0 ${precent}%`;
+						setFieldStyle({flex: flexValue});
+					}
+					const onMouseUp = e => {
+						e.preventDefault();
+						// console.log('up');
+						document.removeEventListener("mousemove", onMouseMove);
+						document.removeEventListener("mouseup", onMouseUp);	
+					}
+					let shiftX = e.clientX - el.getBoundingClientRect().left;
+					console.log(shiftX);
+					document.addEventListener("mousemove", onMouseMove);
+					document.addEventListener("mouseup", onMouseUp);
+				};
+				el.addEventListener("mousedown", onMouseDown);
+				return () => el.removeEventListener("mousedown", onMouseDown);
+			}
+		}, []);
+		return elRef;
+	}
+
+	const resizerRef = useDrag();
+
 	return (
 		<form onSubmit={handleSubmit} className="fields__form">
 			<div className="fields__container">
-				<div className="fields__textarea-wrapper">
+				<div className="fields__textarea-wrapper" style={fieldStyle}>
 					<Field 
 						component={Textarea} 
 						name={"request"} 
@@ -30,7 +71,7 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 						flex={"true"}
 					/>
 				</div>
-				<div className="fields__resizer"></div>
+				<div className="fields__resizer" ref={resizerRef}></div>
 				<div className={responseError ? "fields__response-wrapper fields__response-wrapper_theme_error" : "fields__response-wrapper"}>
 					<div className="fields__response-title">Ответ:</div>
 					<div className="fields__response">
