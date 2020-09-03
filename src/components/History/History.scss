@@ -12,12 +12,16 @@
 	}
 	&__items {
 		position: absolute;
-		top: 60px;
+		top: 50px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		height: 50px;
 		width: 100%;
 		display: flex;
 		flex-wrap: nowrap;
 		flex-direction: row;
 		white-space: nowrap;
+		pointer-events: auto;
 	}
 	&__item {
 		position: relative;
