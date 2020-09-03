@@ -11,6 +11,7 @@ const Button = (props) => {
 			buttonClassName = item === 'iconExitFullscreen' ? buttonClassName + ' button_icon_exit-fullscreen' : buttonClassName;
 			buttonClassName = item === 'iconExit' ? buttonClassName + ' button_icon_exit' : buttonClassName;
 			buttonClassName = item === 'iconDots' ? buttonClassName + ' button_icon_dots' : buttonClassName;
+			buttonClassName = item === 'iconCross' ? buttonClassName + ' button_icon_cross' : buttonClassName;
 		});
 	}
 	return(

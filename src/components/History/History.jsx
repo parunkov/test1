@@ -140,7 +140,7 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 				</div>
 			</div>
 			<span className="history__button">
-				<button onClick={() => setSavedHistory([])}>Clear history</button>
+				<Button type="button" onClick={() => setSavedHistory([])} text="Очистить историю" modifiers={['button_theme_light', 'iconCross']} />
 			</span>
 		</div>
 	)
