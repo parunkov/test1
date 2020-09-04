@@ -1,6 +1,7 @@
 import Fields from './Fields';
 import {connect} from 'react-redux';
 import {sendRequest, setRequestFieldValue} from '../../redux/fields-reducer';
+import {setWaiting} from '../../redux/login-reducer';
 
 const mapStateToProps = (state) => {
 	return {
@@ -11,8 +12,9 @@ const mapStateToProps = (state) => {
 		response: state.fields.response,
 		fieldFormattedValue: state.fields.fieldFormattedValue,
 		requestFieldValue: state.fields.requestFieldValue,
-		error: state.fields.error
+		error: state.fields.error,
+		isWaiting: state.login.isWaiting
 	}
 }
 
-export default connect(mapStateToProps, {sendRequest, setRequestFieldValue})(Fields);
+export default connect(mapStateToProps, {sendRequest, setRequestFieldValue, setWaiting})(Fields);

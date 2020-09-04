@@ -4,9 +4,10 @@ import {required, isJson} from '../../utils/validators/validators';
 import {Textarea} from '../common/FormsControl/FormsControl';
 import JSONPretty from 'react-json-pretty';
 import {formatTextareaValue} from '../common/commonFunctions';
+import Button from '../common/Button/Button';
 import './Fields.scss';
 
-const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue, responseError}) => {
+const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue, responseError, isWaiting}) => {
 	const [fieldStyle, setFieldStyle] = useState({flex: "0 0 49.6%"});
 
 	const setField = (requestFieldValue) => {
@@ -78,8 +79,12 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 				</div>
 			</div>
 			<div className="fields__footer">
-				<button type={"submit"}>Отправить</button>
-				<button type={"button"} onClick={() => setField(requestFieldValue)}>Форматировать</button>
+				<div className="fields__send-button">
+					<Button type="submit" text="Отправить" modifiers={isWaiting ? ['stateWaitig'] : null} />
+				</div>
+				<div className="fields__format-button">
+					<button type={"button"} onClick={() => setField(requestFieldValue)}>Форматировать</button>
+				</div>
 			</div>
 		</form>
 		)
@@ -89,8 +94,10 @@ const FieldsReduxForm = reduxForm ({
 	form: 'request'
 })(FieldsForm);
 
-const Fields = ({login, sublogin, password, request, response, error, sendRequest, fieldFormattedValue, requestFieldValue, setRequestFieldValue}) => {
+const Fields = ({login, sublogin, password, request, response, error, sendRequest, fieldFormattedValue, requestFieldValue, setRequestFieldValue, isWaiting, setWaiting}) => {
 	const onSubmit = (formData) => {
+		setWaiting();
+		// console.log(formData.request);
 		sendRequest(login, sublogin, password, JSON.parse(formData.request), requestFieldValue);
 	}
 
@@ -103,6 +110,7 @@ const Fields = ({login, sublogin, password, request, response, error, sendReques
 				requestFieldValue={requestFieldValue} 
 				setRequestFieldValue={setRequestFieldValue} 
 				responseError={error}
+				isWaiting={isWaiting}
 			/>
 		</div>
 	)
