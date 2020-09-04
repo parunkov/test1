@@ -45,13 +45,14 @@ const Login = ({checkLogin, error, isWaiting, setWaiting}) => {
 	}
 	return (
 		<div className="login">
-			<div className="login__logo">
-				<Logo />
-			</div>
-			<LoginReduxForm onSubmit={onSubmit} loginError={error} isWaiting={isWaiting} />
-			<div className="login__link">
-				{/*<a href="https://github.com/parunkov/test1" className="login__link" target="_blank" rel="noopener noreferrer">@parunkov</a>*/}
-				<GitHubLink />
+			<div className="login__form-wrapper">
+				<div className="login__logo">
+					<Logo />
+				</div>
+				<LoginReduxForm onSubmit={onSubmit} loginError={error} isWaiting={isWaiting} />
+				<div className="login__link">
+					<GitHubLink />
+				</div>
 			</div>
 		</div>
 	)
