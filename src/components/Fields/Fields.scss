@@ -98,7 +98,12 @@
 	&__send-button {
 		flex: 0 0 120px;
 	}
+	&__link {
+		margin-top: 10px;
+		flex: 0 0 auto;
+	}
 	&__format-button {
+		flex: 0 0 auto;
 		margin-top: 5px;
 	}
 }

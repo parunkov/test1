@@ -5,6 +5,7 @@ import {Textarea} from '../common/FormsControl/FormsControl';
 import JSONPretty from 'react-json-pretty';
 import {formatTextareaValue} from '../common/commonFunctions';
 import Button from '../common/Button/Button';
+import GitHubLink from '../common/GitHubLink/GitHubLink';
 import './Fields.scss';
 
 const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue, requestFieldValue, setRequestFieldValue, responseError, isWaiting}) => {
@@ -81,6 +82,9 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 			<div className="fields__footer">
 				<div className="fields__send-button">
 					<Button type="submit" text="Отправить" modifiers={isWaiting ? ['stateWaitig'] : null} />
+				</div>
+				<div className="fields__link">
+					<GitHubLink />
 				</div>
 				<div className="fields__format-button">
 					<Button type="button" text="Форматировать" modifiers={['themeLight', 'iconLines']} onClick={() => setField(requestFieldValue)} />

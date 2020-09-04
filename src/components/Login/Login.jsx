@@ -5,6 +5,7 @@ import {Input} from '../common/FormsControl/FormsControl';
 import './Login.scss';
 import Logo from '../common/Logo/Logo';
 import Button from '../common/Button/Button';
+import GitHubLink from '../common/GitHubLink/GitHubLink';
 
 const LoginForm = ({handleSubmit, error, loginError, isWaiting}) => {
 	return (
@@ -48,7 +49,10 @@ const Login = ({checkLogin, error, isWaiting, setWaiting}) => {
 				<Logo />
 			</div>
 			<LoginReduxForm onSubmit={onSubmit} loginError={error} isWaiting={isWaiting} />
-			<a href="https://github.com/parunkov/test1" className="login__link" target="_blank" rel="noopener noreferrer">@parunkov</a>
+			<div className="login__link">
+				{/*<a href="https://github.com/parunkov/test1" className="login__link" target="_blank" rel="noopener noreferrer">@parunkov</a>*/}
+				<GitHubLink />
+			</div>
 		</div>
 	)
 		
