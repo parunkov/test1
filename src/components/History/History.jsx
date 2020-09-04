@@ -5,7 +5,7 @@ import {formatTextareaValue} from '../common/commonFunctions';
 import Button from '../common/Button/Button';
 import {CSSTransition} from 'react-transition-group';
 
-const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password, openToTop}) => {
+const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublogin, password, openToTop, setRequestFieldValue}) => {
 	const [dropdownOpened, setDropdownOpened] = useState(false);
 	const [copied, setCopied] = useState(false);
 
@@ -25,6 +25,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	return(
 		<span className="history__item" onMouseDown={() => {
 			change('request', 'request', formatTextareaValue(item.value));
+			setRequestFieldValue(item.value);
 		}}>
 			<span className={item.isError ? "history__status history__status_theme_error" : "history__status"}></span>
 			<span className="history__title">{item.title}
@@ -45,6 +46,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 				openToTop ? "history__dropdown history__dropdown_position_top" : "history__dropdown"
 			}>
 				<div className="history__dropdown-item" onClick={() => {
+					console.log(item.value);
 					sendRequest(login, sublogin, password, JSON.parse(item.value), item.value);
 					setDropdownOpened(false);
 				}}>Выполнить</div>
@@ -65,7 +67,7 @@ const HistoryItem = ({item, deleleHistoryItem, change, sendRequest, login, sublo
 	)
 }
 
-const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password, setSavedHistory}) => {
+const History = ({history, change, deleleHistoryItem, sendRequest, login, sublogin, password, setSavedHistory, setRequestFieldValue}) => {
 
 	const [openToTop, setOpenToTop] = useState(false);
 
@@ -135,7 +137,8 @@ const History = ({history, change, deleleHistoryItem, sendRequest, login, sublog
 						login={login}
 						sublogin={sublogin}
 						password={password}
-						openToTop={openToTop} />)}
+						openToTop={openToTop}
+						setRequestFieldValue={setRequestFieldValue} />)}
 				</div>
 			</div>
 			<span className="history__button">

@@ -2,7 +2,7 @@ import History from './History';
 import {connect} from 'react-redux';
 import {deleleHistoryItem, setSavedHistory} from '../../redux/history-reducer';
 import {change} from 'redux-form';
-import {sendRequest} from '../../redux/fields-reducer';
+import {sendRequest, setRequestFieldValue} from '../../redux/fields-reducer';
 
 const mapStateToProps = (state) => {
 	return {
@@ -13,4 +13,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, {deleleHistoryItem, setSavedHistory, change, sendRequest})(History);
+export default connect(mapStateToProps, {deleleHistoryItem, setSavedHistory, change, sendRequest, setRequestFieldValue})(History);

@@ -12,6 +12,7 @@ const Button = (props) => {
 			buttonClassName = item === 'iconExit' ? buttonClassName + ' button_icon_exit' : buttonClassName;
 			buttonClassName = item === 'iconDots' ? buttonClassName + ' button_icon_dots' : buttonClassName;
 			buttonClassName = item === 'iconCross' ? buttonClassName + ' button_icon_cross' : buttonClassName;
+			buttonClassName = item === 'iconLines' ? buttonClassName + ' button_icon_lines' : buttonClassName;
 		});
 	}
 	return(

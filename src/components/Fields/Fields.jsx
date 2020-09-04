@@ -83,7 +83,7 @@ const FieldsForm = ({handleSubmit, error, change, response, fieldFormattedValue,
 					<Button type="submit" text="Отправить" modifiers={isWaiting ? ['stateWaitig'] : null} />
 				</div>
 				<div className="fields__format-button">
-					<button type={"button"} onClick={() => setField(requestFieldValue)}>Форматировать</button>
+					<Button type="button" text="Форматировать" modifiers={['themeLight', 'iconLines']} onClick={() => setField(requestFieldValue)} />
 				</div>
 			</div>
 		</form>

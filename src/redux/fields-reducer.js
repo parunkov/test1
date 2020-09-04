@@ -56,13 +56,11 @@ export const sendRequest = (login, sublogin, password, request, requestFieldValu
 	sendsay.request(request).then(function(res) {
 		dispatch(setResponse(res));
 		dispatch(deleteError());
-		console.log(requestFieldValue);
 		dispatch(addHistoryItem(request.action, requestFieldValue, false));
 		dispatch(removeWaiting());
 	}).catch(err => {
 		dispatch(setResponse(err));
 		dispatch(setError());
-		console.log(requestFieldValue);
 		dispatch(addHistoryItem(request.action, requestFieldValue, true));
 		dispatch(removeWaiting());
 	});
